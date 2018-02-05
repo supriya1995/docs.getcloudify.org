@@ -73,10 +73,11 @@ deploy:
   acl: public_read
   cache_control: "no-cache no-store"
   on:
-    branches:
-      except:
-      - master 
-      - community-build
+    repo: cloudify-cosmo/docs.getcloudify.org
+    branch: 3.3.0-build
+#      except:
+#      - master 
+#      - community-build
 #    condition: $TRAVIS_BRANCH =~ ^([0-9]+\.[0-9]+\.[0-9]+)-build$
 - provider: s3
   skip_cleanup: true
