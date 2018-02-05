@@ -74,7 +74,7 @@ deploy:
   cache_control: "no-cache no-store"
   on:
     repo: cloudify-cosmo/docs.getcloudify.org
-    branch: 3.3.0-build
+    branch: regex_version
 #      except:
 #      - master 
 #      - community-build
@@ -95,3 +95,4 @@ deploy:
       except:
       - master 
       - community-build
+      - 3.3.0-build
