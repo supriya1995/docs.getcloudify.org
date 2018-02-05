@@ -59,7 +59,7 @@ deploy:
   cache_control: "no-cache no-store"
   on:
     all_branches: true
-    condition: $TRAVIS_BRANCH == $DOCS_VERSION-build
+    condition: $TRAVIS_BRANCH = "$DOCS_VERSION-build"
 - provider: s3
   skip_cleanup: true
   access_key_id: AKIAJAV4DLHK3N32UZAQ
