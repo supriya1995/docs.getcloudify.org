@@ -23,15 +23,17 @@ script:
     if [[ $TRAVIS_BRANCH == "master" ]] ;then
       export DOCS_SITE_BASE_URL="http://stage-docs.getcloudify.org/dev"
     elif [[ $TRAVIS_BRANCH == "community-build" ]] ;then
-      export DOCS_SITE_BASE_URL="http://docs.getcloudify.org/community"
+      export DOCS_SITE_BASE_URL="http://docs.cloudify.co/community"
     elif [[ $TRAVIS_BRANCH =~ $regex_version ]] ;then
       export DOCS_VERSION=${BASH_REMATCH[1]}
-      export DOCS_SITE_BASE_URL="http://docs.getcloudify.org/$DOCS_VERSION"
+      export DOCS_SITE_BASE_URL="http://docs.cloudify.co/$DOCS_VERSION"
     else
       export DOCS_SITE_BASE_URL="http://stage-docs.getcloudify.org/$TRAVIS_BRANCH/"
     fi
   fi
 
+  echo branch: $TRAVIS_BRANCH
+  echo version: $DOCS_VERSION
   echo baseurl: $DOCS_SITE_BASE_URL
 - grunt build
 deploy:
@@ -48,7 +50,7 @@ deploy:
   region: eu-west-1
   on:
     all_branches: true
-    condition: master
+    condition: "$TRAVIS_BRANCH == master"
 - provider: s3
   skip_cleanup: true
   access_key_id: AKIAJZWYILFE5EERNQ6A
@@ -74,7 +76,7 @@ deploy:
   cache_control: "no-cache no-store"
   on:
     all_branches: true
-    condition: $TRAVIS_BRANCH =~ ^[0-9]+\.[0-9]+\.[0-9]+-build$
+    condition: "$TRAVIS_BRANCH =~ ^[0-9]+\.[0-9]+\.[0-9]+-build$"
 - provider: s3
   skip_cleanup: true
   access_key_id: AKIAJAV4DLHK3N32UZAQ
@@ -88,4 +90,4 @@ deploy:
   region: eu-west-1
   on:
     all_branches: true
-    condition: "$TRAVIS_BRANCH != master"
+    condition: "(?!.*-build|master)*"
