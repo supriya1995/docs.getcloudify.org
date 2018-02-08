@@ -32,8 +32,8 @@ script:
     fi
   fi
 
-  echo branch: $TRAVIS_BRANCH
-  echo version: $DOCS_VERSION
+  echo branch: $TRAVIS_BRANCH /n
+  echo version: $DOCS_VERSION /n
   echo baseurl: $DOCS_SITE_BASE_URL
 #- grunt build
 deploy:
