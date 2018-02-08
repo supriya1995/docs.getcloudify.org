@@ -32,9 +32,7 @@ script:
     fi
   fi
 
-  echo branch: $TRAVIS_BRANCH /n
-  echo version: $DOCS_VERSION /n
-  echo baseurl: $DOCS_SITE_BASE_URL
+  echo branch: $TRAVIS_BRANCH ; echo version: $DOCS_VERSION ; echo baseurl: $DOCS_SITE_BASE_URL
 #- grunt build
 deploy:
 - provider: s3
