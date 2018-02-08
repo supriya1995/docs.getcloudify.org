@@ -35,7 +35,7 @@ script:
   echo branch: $TRAVIS_BRANCH
   echo version: $DOCS_VERSION
   echo baseurl: $DOCS_SITE_BASE_URL
-- grunt build
+#- grunt build
 deploy:
 - provider: s3
   skip_cleanup: true
@@ -90,4 +90,4 @@ deploy:
   region: eu-west-1
   on:
     all_branches: true
-    condition: "(?!.*-build|master)*"
+    condition: "$TRAVIS_BRANCH != (*-build|master)"
